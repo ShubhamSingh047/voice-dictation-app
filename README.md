@@ -13,7 +13,7 @@ Requires a Mac with Apple Silicon (M1 or newer) and macOS 11 or later.
 
 ## Install
 
-1. Unzip and drag the app into **Applications**.
+1. Double-click the zip to unzip it in Finder (not the `unzip` command, which breaks the app signature), then drag the app into **Applications**.
 2. Open it. This preview is not notarized, so macOS blocks the first launch. Go to **System Settings → Privacy & Security** and click **Open Anyway**.
 3. Allow **Accessibility** and **Microphone** when asked.
 4. If Fn opens the emoji picker, set **System Settings → Keyboard → "Press 🌐 key to"** to **Do Nothing**.

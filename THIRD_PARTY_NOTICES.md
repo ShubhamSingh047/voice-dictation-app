@@ -30,4 +30,10 @@ Because MUCS 2021 is CC BY-SA 4.0, the Bolkey Lite model is distributed under CC
 | handy-keys, handy-recorder | MIT |
 | tray-icon, enigo, arboard, objc2 | MIT or Apache-2.0 |
 
+## Fonts
+
+| Font | Licence | Source |
+|---|---|---|
+| Instrument Serif (page titles in the Bolkey window, embedded in the app) | SIL Open Font License 1.1 | Copyright 2022 The Instrument Serif Project Authors, https://github.com/Instrument/instrument-serif |
+
 Full licence texts are available from each project's repository.

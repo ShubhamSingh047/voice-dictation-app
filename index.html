@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dictation for Mac</title>
+<meta name="description" content="Hold Fn, speak Hindi, English or Hinglish, and it types. Runs fully on your Mac, offline.">
+<style>
+  :root {
+    --bg: #fbfaf7; --surface: #ffffff; --text: #1d1c1a; --muted: #5f5c57; --line: #e6e2da;
+    --accent: #c2410c; --accent-text: #ffffff; --code: #f3f0ea;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #161513; --surface: #1f1e1b; --text: #eeebe5; --muted: #a8a39a; --line: #34322e;
+      --accent: #f97316; --accent-text: #1a0d05; --code: #2a2825;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #161513; --surface: #1f1e1b; --text: #eeebe5; --muted: #a8a39a; --line: #34322e;
+    --accent: #f97316; --accent-text: #1a0d05; --code: #2a2825;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 48px 16px 64px; }
+  h1 { font-size: clamp(28px, 6vw, 42px); line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.02em; }
+  h2 { font-size: 22px; margin: 48px 0 12px; }
+  p.lead { font-size: 19px; color: var(--muted); margin: 0 0 8px; }
+  .tag { display: inline-block; font-size: 13px; padding: 2px 10px; border: 1px solid var(--line);
+    border-radius: 999px; color: var(--muted); margin-bottom: 20px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 28px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+  .card h3 { margin: 0 0 4px; font-size: 20px; }
+  .card .sub { color: var(--muted); margin: 0 0 14px; font-size: 15px; }
+  .card ul { padding-left: 18px; margin: 0 0 18px; font-size: 15px; }
+  .btn { display: inline-block; background: var(--accent); color: var(--accent-text); text-decoration: none;
+    font-weight: 600; padding: 10px 18px; border-radius: 10px; }
+  .btn:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .size { color: var(--muted); font-size: 14px; margin-left: 8px; }
+  ol, ul { padding-left: 22px; }
+  li { margin: 6px 0; }
+  code { background: var(--code); padding: 1px 6px; border-radius: 6px; font-size: 14px; word-break: break-all; }
+  pre { background: var(--code); padding: 12px 14px; border-radius: 10px; overflow-x: auto; font-size: 13px; }
+  .note { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  .table-wrap { overflow-x: auto; }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+  footer img { display: block; margin-top: 14px; width: 150px; height: auto; border-radius: 6px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <span class="tag">Preview v0.1.0 · macOS · Apple Silicon</span>
+  <h1>Hold Fn, speak, and it types.</h1>
+  <p class="lead">Voice typing for Hindi, English and Hinglish. Hinglish comes out in Roman letters (<em>"kal ki meeting postpone kar do"</em>).</p>
+  <p class="lead">Everything runs on your Mac. It works offline, and your voice never leaves the computer.</p>
+
+  <div class="cards">
+    <section class="card">
+      <h3>Dictation</h3>
+      <p class="sub">Most accurate</p>
+      <ul>
+        <li>Large Hinglish speech model (Whisper large-v3-turbo, fine-tuned)</li>
+        <li>Text in about 0.3–0.6 s after you let go of Fn</li>
+        <li>About 0.7 GB of memory while dictating; it unloads after 5 minutes idle</li>
+      </ul>
+      <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.1.0/Dictation-0.1.0-macOS-arm64.zip">Download</a><span class="size">536 MB</span>
+    </section>
+    <section class="card">
+      <h3>Dictation Lite</h3>
+      <p class="sub">Small and fastest</p>
+      <ul>
+        <li>Small model (Whisper base size), distilled for Indian speech</li>
+        <li>Text in about 0.2 s after you let go of Fn</li>
+        <li>About 130 MB of memory while dictating; it unloads after 5 minutes idle</li>
+      </ul>
+      <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.1.0/Dictation-Lite-0.1.0-macOS-arm64.zip">Download</a><span class="size">60 MB</span>
+    </section>
+  </div>
+  <p class="note">Needs a Mac with Apple Silicon (M1 or newer) and macOS 11 or later. Run one version at a time: both listen for the Fn key.</p>
+
+  <h2>Install</h2>
+  <ol>
+    <li>Unzip the download and drag the app into your <strong>Applications</strong> folder.</li>
+    <li>Open it. This preview is not notarized by Apple, so macOS blocks it the first time. Go to <strong>System Settings → Privacy &amp; Security</strong>, scroll down and click <strong>Open Anyway</strong>.</li>
+    <li>When asked, allow <strong>Accessibility</strong> (to hear the Fn key and type for you) and <strong>Microphone</strong>.</li>
+    <li>If Fn opens the emoji picker, set <strong>System Settings → Keyboard → "Press 🌐 key to"</strong> to <strong>Do Nothing</strong>.</li>
+  </ol>
+  <p>The app lives in the menu bar (a small dot); quit it from there.</p>
+
+  <h2>Use</h2>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Do this</th><th>What happens</th></tr>
+    <tr><td>Hold <strong>Fn</strong>, speak, release</td><td>The text is typed where your cursor is</td></tr>
+    <tr><td>Double-tap <strong>Fn</strong></td><td>Hands-free: keep talking; press Fn or ■ to finish</td></tr>
+    <tr><td><strong>Esc</strong> or ✕</td><td>Cancel without typing</td></tr>
+    <tr><td>No text field focused</td><td>The text is copied to the clipboard and saved to notes</td></tr>
+  </table>
+  </div>
+
+  <h2>Privacy</h2>
+  <p>Speech recognition runs on your Mac. The app makes no network connections for dictation, keeps no recordings by default, and has no account or analytics.</p>
+
+  <h2>Checksums (SHA-256)</h2>
+  <pre>e0919b3dd4f5999cf1e1a30564b6fd6da5cd862bf57730631cb3f12243e0eb33  Dictation-0.1.0-macOS-arm64.zip
+7bca5f6ca1cd97d4aa634e3904c6674dbd93acd13e5e1be71cc32221e6d94220  Dictation-Lite-0.1.0-macOS-arm64.zip</pre>
+  <p>Check with <code>shasum -a 256 &lt;file&gt;.zip</code>.</p>
+
+  <h2>Known limits of this preview</h2>
+  <ul>
+    <li>macOS only for now. Windows, Android and iOS are planned.</li>
+    <li>Not signed with an Apple developer certificate, so the first launch needs "Open Anyway".</li>
+    <li>Dictation Lite is less accurate on English than Dictation.</li>
+  </ul>
+
+  <footer>
+    <p>Models and libraries: the speech models are Oriserve's Whisper-Hindi2Hinglish (Apache-2.0), built on OpenAI Whisper (MIT). Dictation Lite's model is a derivative released under CC BY-SA 4.0. Full credits and licences are in <a href="https://github.com/ShubhamSingh047/voice-dictation-app/blob/main/THIRD_PARTY_NOTICES.md">THIRD_PARTY_NOTICES.md</a>.</p>
+    <a href="https://slint.dev"><img src="assets/MadeWithSlint-logo-whitebg.png" alt="Made with Slint"></a>
+  </footer>
+</main>
+</body>
+</html>

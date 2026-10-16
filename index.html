@@ -60,7 +60,7 @@
 </head>
 <body>
 <main>
-  <span class="tag">Preview v0.2.1 · macOS · Apple Silicon</span>
+  <span class="tag">Preview v0.2.2 · macOS · Apple Silicon</span>
   <header>
     <img src="assets/bolkey-icon.png" alt="">
     <div>
@@ -80,7 +80,7 @@
         <li>Text in about 0.3–0.6 s after you let go of Fn</li>
         <li>About 0.7 GB of memory while the model is loaded; it frees itself after 5 minutes idle</li>
       </ul>
-      <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.1/Bolkey-0.2.1-macOS-arm64.dmg">Download</a><span class="size">523 MB</span>
+      <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.2/Bolkey-0.2.2-macOS-arm64.dmg">Download</a><span class="size">523 MB</span>
     </section>
     <section class="card">
       <div class="title"><img src="assets/bolkey-lite-icon.png" alt=""><h3>Bolkey Lite</h3></div>
@@ -91,7 +91,7 @@
         <li>About 130 MB of memory while the model is loaded; it frees itself after 5 minutes idle</li>
         <li>Noticeably less accurate on English; best for short Hindi and Hinglish</li>
       </ul>
-      <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.1/Bolkey-Lite-0.2.1-macOS-arm64.dmg">Download</a><span class="size">62 MB</span>
+      <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.2/Bolkey-Lite-0.2.2-macOS-arm64.dmg">Download</a><span class="size">62 MB</span>
     </section>
   </div>
   <p class="note">Needs a Mac with Apple Silicon (M1 or newer) and macOS 11 or later. Run one version at a time: both listen for the Fn key. The pill on screen is tinted with the running version's colour: blue for Bolkey, orange for Bolkey Lite.</p>
@@ -119,10 +119,11 @@
 
   <h2>Privacy</h2>
   <p>Speech recognition runs on your Mac. Bolkey makes no network connections, keeps no recordings, and has no account or analytics.</p>
+  <p><strong>Instant start</strong> (on by default) keeps the microphone open so the first word is never clipped: Bolkey holds the last quarter-second of sound in memory, overwritten continuously, and only uses it when you press Fn. macOS shows its microphone indicator while this is on. Turn it off in the menu bar ("Instant start") to open the mic only while you hold Fn.</p>
 
   <h2>Checksums (SHA-256)</h2>
-  <pre>4ca804bffae4737dfbe26681d74fc1f04ab639c796a7c6b89e74ddae600c6831  Bolkey-0.2.1-macOS-arm64.dmg
-db410f1c1baa827824fa970d768a7651816c83d8be9ddc6a922d24147ee8c283  Bolkey-Lite-0.2.1-macOS-arm64.dmg</pre>
+  <pre>9d0ac7621f49e1d14b58970d73abfb805e035955396350e7b89d6361741d26c3  Bolkey-0.2.2-macOS-arm64.dmg
+d28a65e10ab63c5f5bdb99a9ac71180826ac215ea4edc8c9d9a668482a13b3c1  Bolkey-Lite-0.2.2-macOS-arm64.dmg</pre>
   <p>Check with <code>shasum -a 256 &lt;file&gt;.dmg</code>. Earlier versions are on the <a href="https://github.com/ShubhamSingh047/voice-dictation-app/releases">releases page</a>.</p>
 
   <h2>Known limits of this preview</h2>
@@ -130,7 +131,6 @@ db410f1c1baa827824fa970d768a7651816c83d8be9ddc6a922d24147ee8c283  Bolkey-Lite-0.
     <li>macOS only for now. Windows, Android and iOS are planned.</li>
     <li>Not notarized by Apple, so the first launch needs "Open Anyway".</li>
     <li>Bolkey Lite is noticeably less accurate on English than Bolkey; use Bolkey for English.</li>
-    <li>The microphone starts about 0.13 s after Fn goes down: start speaking a moment after you press it.</li>
   </ul>
 
   <footer>

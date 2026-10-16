@@ -2,7 +2,7 @@
 
 <img src="assets/bolkey-icon.png" width="96" alt="Bolkey icon">
 
-**Bolo. Likh gaya.** Hold **Fn**, speak Hindi, English or Hinglish, and it types where your cursor is. Hinglish comes out in Roman letters. Everything runs on your Mac: it works offline and your voice never leaves the computer.
+**Speak. It's typed.** Hold **Fn**, speak Hindi, English or Hinglish, and it types where your cursor is. Hinglish comes out in Roman letters. Everything runs on your Mac: it works offline and your voice never leaves the computer.
 
 **Download page:** https://shubhamsingh047.github.io/voice-dictation-app/
 

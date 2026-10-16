@@ -60,7 +60,7 @@
 </head>
 <body>
 <main>
-  <span class="tag">Preview v0.2.3 · macOS · Apple Silicon</span>
+  <span class="tag">Preview v0.2.4 · macOS · Apple Silicon</span>
   <header>
     <img src="assets/bolkey-icon.png" alt="">
     <div>
@@ -80,7 +80,7 @@
         <li>Text in about 0.3–0.6 s after you let go of Fn</li>
         <li>About 0.7 GB of memory while the model is loaded; it frees itself after 5 minutes idle</li>
       </ul>
-      <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.3/Bolkey-0.2.3-macOS-arm64.dmg">Download</a><span class="size">523 MB</span>
+      <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.4/Bolkey-0.2.4-macOS-arm64.dmg">Download</a><span class="size">523 MB</span>
     </section>
     <section class="card">
       <div class="title"><img src="assets/bolkey-lite-icon.png" alt=""><h3>Bolkey Lite</h3></div>
@@ -91,7 +91,7 @@
         <li>About 130 MB of memory while the model is loaded; it frees itself after 5 minutes idle</li>
         <li>Noticeably less accurate on English; best for short Hindi and Hinglish</li>
       </ul>
-      <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.3/Bolkey-Lite-0.2.3-macOS-arm64.dmg">Download</a><span class="size">62 MB</span>
+      <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.4/Bolkey-Lite-0.2.4-macOS-arm64.dmg">Download</a><span class="size">62 MB</span>
     </section>
   </div>
   <p class="note">Needs a Mac with Apple Silicon (M1 or newer) and macOS 11 or later. Run one version at a time: both listen for the Fn key. The pill on screen is tinted with the running version's colour: blue for Bolkey, orange for Bolkey Lite.</p>
@@ -103,7 +103,7 @@
     <li>When asked, allow <strong>Accessibility</strong> (to hear the Fn key and type for you) and <strong>Microphone</strong>. Bolkey starts listening as soon as you allow it.</li>
     <li>If Fn opens the emoji picker, set <strong>System Settings → Keyboard → "Press 🌐 key to"</strong> to <strong>Do Nothing</strong>.</li>
   </ol>
-  <p>Bolkey lives in the menu bar (a small keycap icon). From there: language, pill position, how soon to free memory, launch at login, your notes, and Quit.</p>
+  <p>Bolkey lives in the menu bar (a small keycap icon) and in the small pill at the bottom of the screen. <strong>Right-click the pill</strong> (or click the menu-bar icon) for the menu: language, pill position, instant start, how soon to free memory, launch at login, your notes, and Quit. On MacBooks with a notch the menu-bar icon can be hidden; the pill is always there.</p>
 
   <h2>Use</h2>
   <div class="table-wrap">
@@ -122,8 +122,8 @@
   <p><strong>Instant start</strong> (on by default) keeps the microphone open so the first word is never clipped: Bolkey holds the last quarter-second of sound in memory, overwritten continuously, and only uses it when you press Fn. macOS shows its microphone indicator while this is on. Turn it off in the menu bar ("Instant start") to open the mic only while you hold Fn.</p>
 
   <h2>Checksums (SHA-256)</h2>
-  <pre>73d742083ddd3cf5bca691c9fa604d52e245eed272517f9bb617149c069fe0fb  Bolkey-0.2.3-macOS-arm64.dmg
-8143ec9e4966ea410422a0a124d6aaee939c539ed9a6ee95729fbf26104be73f  Bolkey-Lite-0.2.3-macOS-arm64.dmg</pre>
+  <pre>db823ecb42ac8b50923b02b712d52f009eea43e0116f8ebb57b4123452e7bb36  Bolkey-0.2.4-macOS-arm64.dmg
+753dc49dd39d132cd456fa2211785c7fb99fdfa8fd7bf0fde2b281f6123137b3  Bolkey-Lite-0.2.4-macOS-arm64.dmg</pre>
   <p>Check with <code>shasum -a 256 &lt;file&gt;.dmg</code>. Earlier versions are on the <a href="https://github.com/ShubhamSingh047/voice-dictation-app/releases">releases page</a>.</p>
 
   <h2>Known limits of this preview</h2>

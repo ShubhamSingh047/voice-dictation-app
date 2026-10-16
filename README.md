@@ -8,8 +8,8 @@
 
 | Version | Download | Best for |
 |---|---|---|
-| Bolkey | [Bolkey-0.2.3-macOS-arm64.dmg](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.3/Bolkey-0.2.3-macOS-arm64.dmg) (523 MB) | Highest accuracy (recommended), blue |
-| Bolkey Lite | [Bolkey-Lite-0.2.3-macOS-arm64.dmg](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.3/Bolkey-Lite-0.2.3-macOS-arm64.dmg) (62 MB) | Smallest and fastest, orange; weaker on English |
+| Bolkey | [Bolkey-0.2.4-macOS-arm64.dmg](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.4/Bolkey-0.2.4-macOS-arm64.dmg) (523 MB) | Highest accuracy (recommended), blue |
+| Bolkey Lite | [Bolkey-Lite-0.2.4-macOS-arm64.dmg](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.4/Bolkey-Lite-0.2.4-macOS-arm64.dmg) (62 MB) | Smallest and fastest, orange; weaker on English |
 
 Requires a Mac with Apple Silicon (M1 or newer) and macOS 11 or later.
 

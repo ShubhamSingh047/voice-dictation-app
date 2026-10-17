@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bolkey for Mac</title>
-<meta name="description" content="Bolkey: hold Fn, speak Hindi, English or Hinglish, and it types. Runs fully on your Mac, offline.">
+<title>Bolkey</title>
+<meta name="description" content="Bolkey: speak Hindi, English or Hinglish, and it types. Runs fully on your Mac or Android phone, offline.">
 <link rel="icon" href="assets/bolkey-icon.png">
 <style>
   :root {
@@ -60,7 +60,7 @@
 </head>
 <body>
 <main>
-  <span class="tag">Preview v0.2.5 · macOS · Apple Silicon</span>
+  <span class="tag">Preview v0.2.5 · macOS (Apple Silicon) · Android</span>
   <header>
     <img src="assets/bolkey-icon.png" alt="">
     <div>
@@ -91,16 +91,35 @@
         <li>About 130 MB of memory while the model is loaded; it frees itself after 5 minutes idle</li>
         <li>Noticeably less accurate on English; best for short Hindi and Hinglish</li>
       </ul>
-      <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.5/Bolkey-Lite-0.2.5-macOS-arm64.dmg">Download</a><span class="size">64 MB</span>
+      <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.5/Bolkey-Lite-0.2.5-macOS-arm64.dmg">Download</a><span class="size">63 MB</span>
     </section>
   </div>
   <p class="note">Needs a Mac with Apple Silicon (M1 or newer) and macOS 11 or later. Run one version at a time: both listen for the Fn key. The pill on screen is tinted with the running version's colour: blue for Bolkey, orange for Bolkey Lite.</p>
 
-  <h2>Install</h2>
+  <h2>Android phones and tablets</h2>
+  <section class="card">
+    <div class="title"><img src="assets/bolkey-lite-icon.png" alt=""><h3>Bolkey Lite for Android</h3></div>
+    <p class="sub">Android 10 or later · phones from about 2019 on · orange</p>
+    <ul>
+      <li>A small orange bubble floats over your apps: hold it and speak, or tap it for hands-free. It types where your cursor is, in WhatsApp, Chrome, Gmail or anywhere else.</li>
+      <li>Text in about half a second after you let go (Oppo Find X8); everything runs on the phone, with no internet permission at all.</li>
+      <li>A setup guide walks you through the three permissions it needs, one at a time.</li>
+    </ul>
+    <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.5/Bolkey-Lite-0.2.5-android-arm64.apk">Download APK</a><span class="size">98 MB</span>
+  </section>
+  <ol>
+    <li>Download the APK on your phone and open it. If Android asks, allow your browser to <strong>install unknown apps</strong>.</li>
+    <li>Open Bolkey Lite and follow the setup guide: <strong>Microphone</strong>, <strong>Show the bubble over other apps</strong>, then <strong>Type for you</strong> (an Accessibility setting).</li>
+    <li>If the Accessibility switch is greyed out, go to <strong>Settings → Apps → Bolkey Lite → ⋮ → Allow restricted settings</strong> and try again. Android does this for apps installed outside the Play Store.</li>
+    <li>For the quickest response, allow <strong>Unrestricted</strong> battery use when Bolkey suggests it.</li>
+  </ol>
+  <p class="note">After typing, your last dictation stays on the clipboard: Android doesn't let apps restore what was there before.</p>
+
+  <h2>Install on a Mac</h2>
   <ol>
     <li>Open the downloaded <strong>.dmg</strong> and drag Bolkey onto the <strong>Applications</strong> folder.</li>
     <li>Open it. This preview is not notarized by Apple, so macOS blocks it the first time. Go to <strong>System Settings → Privacy &amp; Security</strong>, scroll down and click <strong>Open Anyway</strong>.</li>
-    <li>When asked, allow <strong>Accessibility</strong> (to hear the Fn key and type for you) and <strong>Microphone</strong>. Bolkey starts listening as soon as you allow it.</li>
+    <li>Bolkey opens a <strong>setup guide</strong> that walks you through what macOS needs, one step at a time: <strong>Accessibility</strong> (to hear the Fn key and type for you) and <strong>Microphone</strong>. Each step has a button to the right System Settings page and moves on by itself when done.</li>
     <li>If Fn opens the emoji picker, set <strong>System Settings → Keyboard → "Press 🌐 key to"</strong> to <strong>Do Nothing</strong>, or choose another key in Bolkey's Settings.</li>
   </ol>
   <p>Bolkey lives in the small pill at the bottom of the screen and in the menu bar (a small keycap icon). <strong>Click the Bolkey app icon</strong> (in Applications, Launchpad or Spotlight) to open the Bolkey window:</p>
@@ -128,13 +147,15 @@
   <p><strong>Instant start</strong> (on by default) keeps the microphone open so the first word is never clipped: Bolkey holds the last quarter-second of sound in memory, overwritten continuously, and only uses it when you press Fn. macOS shows its microphone indicator while this is on. Turn it off in the menu bar ("Instant start") to open the mic only while you hold Fn.</p>
 
   <h2>Checksums (SHA-256)</h2>
-  <pre>d0237cc54b29ce0bbf4957e9df02354f55f85ec1d591514feec6360b9a131f1e  Bolkey-0.2.5-macOS-arm64.dmg
-dc14294b7aa5c0aca2a38965e26442248cbaeff44271c1d0c06e878108b9a9ab  Bolkey-Lite-0.2.5-macOS-arm64.dmg</pre>
-  <p>Check with <code>shasum -a 256 &lt;file&gt;.dmg</code>. Earlier versions are on the <a href="https://github.com/ShubhamSingh047/voice-dictation-app/releases">releases page</a>.</p>
+  <pre>916acfe8619befc9d62f53b8c8168daa62cad0a03fc330e61caf61388c54b80a  Bolkey-0.2.5-macOS-arm64.dmg
+cfb5b6030ace50ce898586c7f34a41e853b1a735411d6f1015e9e5efe78dcedc  Bolkey-Lite-0.2.5-macOS-arm64.dmg
+a265107a61c9fb69a2e6e6132a4621d4e4cad68d8a4a78b1ac12be9ce1554a0c  Bolkey-Lite-0.2.5-android-arm64.apk</pre>
+  <p>Check with <code>shasum -a 256 &lt;file&gt;</code>. Earlier versions are on the <a href="https://github.com/ShubhamSingh047/voice-dictation-app/releases">releases page</a>.</p>
 
   <h2>Known limits of this preview</h2>
   <ul>
-    <li>macOS only for now. Windows, Android and iOS are planned.</li>
+    <li>Mac and Android for now. Windows and iPhone are planned.</li>
+    <li>Android has Bolkey Lite only; the larger Bolkey model is too big and slow for phones today.</li>
     <li>Not notarized by Apple, so the first launch needs "Open Anyway".</li>
     <li>Bolkey Lite is noticeably less accurate on English than Bolkey; use Bolkey for English.</li>
   </ul>

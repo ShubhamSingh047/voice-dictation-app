@@ -1,4 +1,4 @@
-# Bolkey for Mac
+# Bolkey for Mac and Android
 
 <img src="assets/bolkey-icon.png" width="96" alt="Bolkey icon">
 
@@ -8,10 +8,11 @@
 
 | Version | Download | Best for |
 |---|---|---|
-| Bolkey | [Bolkey-0.2.4-macOS-arm64.dmg](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.4/Bolkey-0.2.4-macOS-arm64.dmg) (523 MB) | Highest accuracy (recommended), blue |
-| Bolkey Lite | [Bolkey-Lite-0.2.4-macOS-arm64.dmg](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.4/Bolkey-Lite-0.2.4-macOS-arm64.dmg) (62 MB) | Smallest and fastest, orange; weaker on English |
+| Bolkey for Mac | [Bolkey-0.2.5-macOS-arm64.dmg](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.5/Bolkey-0.2.5-macOS-arm64.dmg) (524 MB) | Highest accuracy (recommended), blue |
+| Bolkey Lite for Mac | [Bolkey-Lite-0.2.5-macOS-arm64.dmg](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.5/Bolkey-Lite-0.2.5-macOS-arm64.dmg) (63 MB) | Smallest and fastest, orange; weaker on English |
+| Bolkey Lite for Android | [Bolkey-Lite-0.2.5-android-arm64.apk](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.5/Bolkey-Lite-0.2.5-android-arm64.apk) (98 MB) | Android 10 or later; a floating bubble types into any app |
 
-Requires a Mac with Apple Silicon (M1 or newer) and macOS 11 or later.
+Mac: Apple Silicon (M1 or newer), macOS 11 or later. Android: 64-bit ARM phones, Android 10 or later. Install steps for Android are on the [download page](https://shubhamsingh047.github.io/voice-dictation-app/).
 
 ## Install
 
@@ -61,7 +62,7 @@ Two editions ship, built from two models:
 | | Bolkey (Apex) | Bolkey Lite (student) |
 |---|---|---|
 | Base | [Oriserve Whisper-Hindi2Hinglish-Apex](https://huggingface.co/Oriserve/Whisper-Hindi2Hinglish-Apex) (whisper-large-v3-turbo, 809M parameters) | Oriserve Swift (whisper-base, 74M), fine-tuned by us on Apex's output |
-| Size on disk | 574 MB (q5_0) | 55 MB (q5_0, Mac) · 82 MB (q8_0, Android) |
+| Size on disk | 574 MB (q5_0) | 55 MB (q5_0, Mac: v1) · 82 MB (q8_0, Android: v2) |
 | Runs on | Mac GPU (Metal) | Mac GPU · phone CPU |
 
 No public dataset has Hindi and Hinglish speech written in **Roman letters**, which is how people actually type Hinglish. So we made one: the big model labels the audio, and the small model learns from those labels. This is called distillation by pseudo-labelling, the method behind Distil-Whisper.
@@ -113,7 +114,7 @@ Everything (labelling, both fine-tuning runs and every test) ran on one laptop: 
 | Fine-tune 1: distillation | Swift → student v1 · 5,000 steps × 32 clips (about 3 passes over the data) | 15 Oct 13:52 → 16 Oct 03:43 | **13 h 51 min** |
 | Convert and test | whisper.cpp conversion, 3 held-out sets (~3,600 clips) | 16 Oct 03:44 → 05:00 | ~1.3 h |
 | **First model, start to finish** | | | **about 28 hours** |
-| Fine-tune 2: short windows | student v1 → v2 · 1,500 steps × 32 clips | 17 Oct (running now) | about 3.5 h |
+| Fine-tune 2: short windows | student v1 → v2 · 1,500 steps × 32 clips (resumed once after a disk failure) | 17 Oct | **about 3.7 h** |
 
 - **Fine-tune 1 settings:** learning rate 1e-5, batch 4 × gradient accumulation 8, keep the checkpoint that scores best on held-out data. Step 3000 won.
 - **Bug fixed:** a wrong special-token id in the base model's config. Fixing it dropped the first-batch loss from 3.42 to 0.19.
@@ -146,13 +147,21 @@ A phone has no Mac-class GPU, so the student had to run on the CPU. Every speed 
 | Thread count = cores − 2 (2 to 6), so other apps stay smooth | ~1.3 s | same |
 | 20 s encoder window instead of 30 s | 0.82 s | 12.9 / 29.7 |
 | q8_0 quantisation (q5_0 has no fast ARM kernel) | 0.46 s | 12.8 / 30.7 |
-| i8mm build, picked at runtime when the CPU supports it | **0.43 s** | same |
+| i8mm build, picked at runtime when the CPU supports it | 0.43 s | same |
+| **Student v2 (fine-tune 2) at a 10 s window** | **0.21–0.28 s** | 13.1 / 30.6 |
 
 - **Rejected:** a phone GPU (Vulkan) build. It was slower on the Mali GPU (2.1 s vs 1.25 s), so it was not shipped.
 - **Rejected:** a smaller encoder window. Below 20 s, accuracy fell quickly: 15.7 / 33.0 at 10 s.
 - **Long dictations:** speech is cut at natural pauses after 15 s and transcribed while you keep talking. A 45 s dictation went from 6.2 s to 1.3 s after release.
 
-**Retraining now:** the student learned only on full 30 s windows, so it degrades when the window shrinks. We are retraining it on random 10, 15, 20 and 30 s windows so phones can use smaller, faster windows without losing accuracy.
+**Fine-tune 2: retraining for short windows.** Student v1 only ever saw full 30 s windows, so it fell apart when phones shrank the window (16.9 / 32.6 at 10 s). We fine-tuned it again on random 10, 15, 20 and 30 s windows. The result, student v2, at a **10 s** window scores what v1 scored at 20 s, with half the encoder work:
+
+| Phone model (q8_0) | 20 s window | 15 s | 10 s |
+|---|---|---|---|
+| Student v1 | 12.8 / 30.7 | — | 16.9 / 32.6 |
+| **Student v2** | **12.2 / 29.1** | 12.5 / 30.1 | **13.1 / 30.6** |
+
+Android now ships v2 at a 10 s window. The Mac keeps v1: Macs use the full window, where v2 is no better (12.6 / 29.1 vs 12.6 / 28.7).
 
 ### Speed
 
@@ -161,7 +170,7 @@ From releasing the key to the text appearing. The target was to beat Wispr Flow'
 | Device | Bolkey (Apex) | Bolkey Lite |
 |---|---|---|
 | MacBook Air M4 | 0.41–0.65 s | 0.18–0.25 s |
-| Oppo Find X8 (Android) | — | 0.43–0.52 s |
+| Oppo Find X8 (Android) | — | 0.84–0.99 s for a 45 s dictation (speech-to-text 0.21–0.28 s for a short one) |
 
 ## This repository
 

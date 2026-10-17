@@ -153,5 +153,3 @@ From releasing the key to the text appearing. The target was to beat Wispr Flow'
 ## This repository
 
 This repository holds the download page and releases. Licences and credits: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
-
-[![Made with Slint](assets/MadeWithSlint-logo-whitebg.png)](https://slint.dev)

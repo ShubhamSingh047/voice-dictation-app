@@ -101,12 +101,25 @@ Apex transcribed every training clip through the same engine the app uses: 52,69
 
 Share of labels kept: MUCS 66 %, IndicVoices 76 %, LibriSpeech 86 %. Final training set: **49,252 clips (~99 h)** plus 766 for validation.
 
-### 3. Training
+### 3. Fine-tuning
 
-- **Hardware:** a 16 GB MacBook Air (M4) on Apple's MPS GPU backend. Nothing ran in the cloud.
-- **Settings:** learning rate 1e-5, 32 clips per step, 5,000 steps, 13 h 51 m.
-- **Bug fixed during training:** a wrong special-token id in the base model's config. Fixing it dropped the first-batch loss from 3.42 to 0.19.
-- **Checkpoint kept:** step 3000 scored best on the held-out sets, so that is the one we kept.
+Everything (labelling, both fine-tuning runs and every test) ran on one laptop: a **MacBook Air M4 with 16 GB of RAM**, using its GPU (Metal for whisper.cpp, PyTorch MPS for training). There was no cloud GPU and no rented hardware.
+
+| Stage | What ran | When | Time |
+|---|---|---|---|
+| Download and prepare audio | ~140 h from 4 datasets → 16 kHz FLAC | 15 Oct, from 00:40 | ~1.5 h (overlaps labelling) |
+| Label the training audio with Apex | 74,236 clips through the app's own engine | 15 Oct 01:16 → 12:00 | **10 h 44 min** |
+| Filter labels, build sets, memory fix | calibrate the filters, fix the out-of-memory crash, throughput test | 15 Oct 12:00 → 13:50 | ~2 h |
+| Fine-tune 1: distillation | Swift → student v1 · 5,000 steps × 32 clips (about 3 passes over the data) | 15 Oct 13:52 → 16 Oct 03:43 | **13 h 51 min** |
+| Convert and test | whisper.cpp conversion, 3 held-out sets (~3,600 clips) | 16 Oct 03:44 → 05:00 | ~1.3 h |
+| **First model, start to finish** | | | **about 28 hours** |
+| Fine-tune 2: short windows | student v1 → v2 · 1,500 steps × 32 clips | 17 Oct (running now) | about 3.5 h |
+
+- **Fine-tune 1 settings:** learning rate 1e-5, batch 4 × gradient accumulation 8, keep the checkpoint that scores best on held-out data. Step 3000 won.
+- **Bug fixed:** a wrong special-token id in the base model's config. Fixing it dropped the first-batch loss from 3.42 to 0.19.
+- **Fitting in 16 GB:** training first crashed with an MPS out-of-memory error. Every new label length made the GPU cache new buffers. Padding labels to multiples of 64 kept memory flat at 7 to 8 GB.
+- **A fanless laptop:** steps slowed from about 8 s to 10 s as the MacBook Air heated up. We planned around that rather than renting a GPU.
+- **Crash-safe:** checkpoints are saved every 500 steps. When the Mac froze during fine-tune 2, training resumed from the last checkpoint and lost only about 45 minutes.
 
 ### 4. Evaluation
 

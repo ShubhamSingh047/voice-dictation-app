@@ -8,9 +8,9 @@
 
 | Version | Download | Best for |
 |---|---|---|
-| Bolkey for Mac | [Bolkey-0.2.5-macOS-arm64.dmg](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.5/Bolkey-0.2.5-macOS-arm64.dmg) (524 MB) | Highest accuracy (recommended), blue |
-| Bolkey Lite for Mac | [Bolkey-Lite-0.2.5-macOS-arm64.dmg](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.5/Bolkey-Lite-0.2.5-macOS-arm64.dmg) (63 MB) | Smallest and fastest, orange; weaker on English |
-| Bolkey Lite for Android | [Bolkey-Lite-0.2.5-android-arm64.apk](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.5/Bolkey-Lite-0.2.5-android-arm64.apk) (98 MB) | Android 10 or later; a floating bubble types into any app |
+| Bolkey for Mac | [Bolkey-0.2.6-macOS-arm64.dmg](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.6/Bolkey-0.2.6-macOS-arm64.dmg) (524 MB) | Large model, slightly better on English, blue |
+| Bolkey Lite for Mac | [Bolkey-Lite-0.2.6-macOS-arm64.dmg](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.6/Bolkey-Lite-0.2.6-macOS-arm64.dmg) (64 MB) | Recommended: about as accurate as Bolkey, 2–3 times faster, orange |
+| Bolkey Lite for Android | [Bolkey-Lite-0.2.6-android-arm64.apk](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.6/Bolkey-Lite-0.2.6-android-arm64.apk) (98 MB) | Android 10 or later; a floating bubble types into any app |
 
 Mac: Apple Silicon (M1 or newer), macOS 11 or later. Android: 64-bit ARM phones, Android 10 or later. Install steps for Android are on the [download page](https://shubhamsingh047.github.io/voice-dictation-app/).
 
@@ -163,6 +163,44 @@ A phone has no Mac-class GPU, so the student had to run on the CPU. Every speed 
 
 Android now ships v2 at a 10 s window. The Mac keeps v1: Macs use the full window, where v2 is no better (12.6 / 29.1 vs 12.6 / 28.7).
 
+### 6. Fine-tune 3: one real speaker's voice (Lite v3)
+
+Public test sets say little about how the app works for the person actually using it, so the developer recorded their own voice: **212 short sentences**, read at normal speed in a quiet room on the Mac's microphone. They cover Hinglish, English, Hindi and short replies, plus three sets aimed at problems they kept hitting: words with **p and b**, **acronyms** (GTM, MVP, API, AWS, UPI…) and **fast speech**. Every third sentence of each kind (67) was held out and never trained on; all the scores below are on those.
+
+- **Mix:** the developer's 145 training clips, each repeated 8 times, plus 2,800 public clips (Hindi-English tutorials from MUCS and English from LibriSpeech) so the model keeps working for everyone else.
+- **Rule for shipping:** no more than 0.5 points worse on the public Hindi and Indian English tests than the model it replaces.
+- **Device and time:** the same MacBook Air M4; each 200-step round took about 25 minutes, and scoring about 10.
+
+What happened, round by round:
+
+1. **Fine-tuning the student (v2) on the developer's voice** helped them (31.6 → about 28 %) but cost other speakers up to 0.8 points on Indian English. Adding English to the mix didn't fix that.
+2. **Weight averaging** (half the fine-tuned weights, half the original) kept most of that gain and none of the loss.
+3. **Swift, the student's own starting point, beat every student** on the developer's voice and on Indian English. So the last round fine-tuned Swift instead, then averaged it 50/50 with Swift. That is **Lite v3**.
+
+| Model, at the phone's 10 s window (q8_0) | Developer's voice | Acronyms | Fast speech | Hindi (IndicVoices) | Indian English (Svarah) |
+|---|---|---|---|---|---|
+| Student v2 (0.2.5) | 31.6 | 34.3 | 16.9 | **13.1** | 30.6 |
+| Student v2 + developer's voice, averaged | 28.8 | 27.3 | 15.8 | **13.1** | 29.4 |
+| Swift | 26.2 | 21.0 | 17.0 | 13.7 | 28.0 |
+| **Lite v3** (Swift + developer's voice, averaged) | **24.5** | **16.5** | **10.6** | 13.7 | **26.5** |
+
+On the Mac (full window, q5_0) Lite v3 scores 25.0 on the developer's voice against 30.8 for the old Lite (v1), with Hindi 13.1 vs 12.6 and Indian English 27.9 vs 28.7. Both apps ship Lite v3 from 0.2.6. The recordings themselves stay on the developer's Mac; only the trained model is published.
+
+**Bolkey vs Bolkey Lite in 0.2.6.** Scored the same way, with the apps' own settings (English and Hinglish mode, Roman letters). These runs differ from section 4's setup, so compare numbers within this table only.
+
+| Mac, full window | Bolkey (Apex) | Bolkey Lite (v3) |
+|---|---|---|
+| Hindi (IndicVoices) | 13.8 | **13.1** |
+| Indian English (Svarah) | **26.7** | 27.9 |
+| Developer's held-out sentences | 24.8 | 25.0 |
+| Acronyms / fast speech (developer) | 17.9 / 16.0 | **14.4 / 12.5** |
+| Text after release, MacBook Air M4 | 0.41–0.65 s | **0.18–0.25 s** |
+| Download | 524 MB | **64 MB** |
+
+On speakers neither model was trained on, Lite is 0.7 points better on Hindi and 1.2 points behind on Indian English, so Lite is now the recommended download.
+
+**"My words."** Both apps take a list of words, one per line: `GTM` keeps that exact spelling, and `MBP => MVP` fixes a word the model mishears. We also tried giving the list to the model as a hint (Whisper's initial prompt). It helped student v2 (acronyms 34.7 → 24.4 %) but made Lite v3 worse (24.5 → 26.2 %, mostly on Hinglish), so the list only corrects the finished text.
+
 ### Speed
 
 From releasing the key to the text appearing. The target was to beat Wispr Flow's ~0.7 s.
@@ -170,7 +208,7 @@ From releasing the key to the text appearing. The target was to beat Wispr Flow'
 | Device | Bolkey (Apex) | Bolkey Lite |
 |---|---|---|
 | MacBook Air M4 | 0.41–0.65 s | 0.18–0.25 s |
-| Oppo Find X8 (Android) | — | 0.84–0.99 s for a 45 s dictation (speech-to-text 0.21–0.28 s for a short one) |
+| Oppo Find X8 (Android) | — | 0.84–0.99 s for a 45 s dictation (speech-to-text 0.21–0.28 s for a short one); Lite v3 is the same size and speed |
 
 ## This repository
 

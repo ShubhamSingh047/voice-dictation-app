@@ -60,7 +60,7 @@
 </head>
 <body>
 <main>
-  <span class="tag">Preview v0.2.5 · macOS (Apple Silicon) · Android</span>
+  <span class="tag">Preview v0.2.6 · macOS (Apple Silicon) · Android</span>
   <header>
     <img src="assets/bolkey-icon.png" alt="">
     <div>
@@ -74,27 +74,41 @@
   <div class="cards">
     <section class="card">
       <div class="title"><img src="assets/bolkey-icon.png" alt=""><h3>Bolkey</h3></div>
-      <p class="sub">Most accurate · recommended · blue</p>
+      <p class="sub">Large model · slightly better on English · blue</p>
       <ul>
         <li>Large Hinglish speech model (Whisper large-v3-turbo, fine-tuned)</li>
         <li>Text in about 0.3–0.6 s after you let go of Fn</li>
         <li>About 0.7 GB of memory while the model is loaded; it frees itself after 5 minutes idle</li>
       </ul>
-      <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.5/Bolkey-0.2.5-macOS-arm64.dmg">Download</a><span class="size">524 MB</span>
+      <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.6/Bolkey-0.2.6-macOS-arm64.dmg">Download</a><span class="size">524 MB</span>
     </section>
     <section class="card">
       <div class="title"><img src="assets/bolkey-lite-icon.png" alt=""><h3>Bolkey Lite</h3></div>
-      <p class="sub">Small and fastest · orange · experimental</p>
+      <p class="sub">Recommended · as accurate, 2–3 times faster · orange</p>
       <ul>
-        <li>Small model (Whisper base size), distilled for Indian speech</li>
+        <li>Small model (Whisper base size), fine-tuned on everyday Indian dictation, including fast speech and work acronyms</li>
         <li>Text in about 0.2 s after you let go of Fn</li>
         <li>About 130 MB of memory while the model is loaded; it frees itself after 5 minutes idle</li>
-        <li>Noticeably less accurate on English; best for short Hindi and Hinglish</li>
+        <li>About a quarter fewer mistakes than the previous Lite in our tests</li>
       </ul>
-      <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.5/Bolkey-Lite-0.2.5-macOS-arm64.dmg">Download</a><span class="size">63 MB</span>
+      <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.6/Bolkey-Lite-0.2.6-macOS-arm64.dmg">Download</a><span class="size">64 MB</span>
     </section>
   </div>
-  <p class="note">Needs a Mac with Apple Silicon (M1 or newer) and macOS 11 or later. Run one version at a time: both listen for the Fn key. The pill on screen is tinted with the running version's colour: blue for Bolkey, orange for Bolkey Lite.</p>
+  <h2>Which one should I get?</h2>
+  <p>Since 0.2.6, <strong>Bolkey Lite is about as accurate as Bolkey</strong>: better on Hindi, 1.2 points behind on Indian English, and two to three times faster in an eighth of the download. Get Lite unless you mostly dictate English.</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th></th><th>Bolkey</th><th>Bolkey Lite</th></tr>
+    <tr><td>Mistakes on Hindi speech (IndicVoices test, lower is better)</td><td>13.8%</td><td><strong>13.1%</strong></td></tr>
+    <tr><td>Mistakes on Indian English (Svarah test)</td><td><strong>26.7%</strong></td><td>27.9%</td></tr>
+    <tr><td>Text after you let go of Fn (MacBook Air M4)</td><td>0.41–0.65 s</td><td><strong>0.18–0.25 s</strong></td></tr>
+    <tr><td>Memory while the model is loaded</td><td>about 0.7 GB</td><td><strong>about 130 MB</strong></td></tr>
+    <tr><td>Download</td><td>524 MB</td><td><strong>64 MB</strong></td></tr>
+    <tr><td>Download link</td><td><a href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.6/Bolkey-0.2.6-macOS-arm64.dmg">Bolkey 0.2.6</a></td><td><a href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.6/Bolkey-Lite-0.2.6-macOS-arm64.dmg">Bolkey Lite 0.2.6</a></td></tr>
+  </table>
+  </div>
+  <p class="note">Both measured the same way, with the apps' own settings (English and Hinglish, Roman letters), on public test sets of speakers neither model was trained on. Percentages are word or character error rates.</p>
+  <p class="note">Needs a Mac with Apple Silicon (M1 or newer) and macOS 11 or later. Run one version at a time: both listen for the Fn key. The small glass pill on screen shows its waveform in the running version's colour: blue for Bolkey, orange for Bolkey Lite.</p>
 
   <h2>Android phones and tablets</h2>
   <section class="card">
@@ -105,7 +119,7 @@
       <li>Text in about half a second after you let go (Oppo Find X8); everything runs on the phone, with no internet permission at all.</li>
       <li>A setup guide walks you through the three permissions it needs, one at a time.</li>
     </ul>
-    <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.5/Bolkey-Lite-0.2.5-android-arm64.apk">Download APK</a><span class="size">98 MB</span>
+    <a class="btn" href="https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.6/Bolkey-Lite-0.2.6-android-arm64.apk">Download APK</a><span class="size">98 MB</span>
   </section>
   <ol>
     <li>Download the APK on your phone and open it. If Android asks, allow your browser to <strong>install unknown apps</strong>.</li>
@@ -147,9 +161,9 @@
   <p><strong>Instant start</strong> (on by default) keeps the microphone open so the first word is never clipped: Bolkey holds the last quarter-second of sound in memory, overwritten continuously, and only uses it when you press Fn. macOS shows its microphone indicator while this is on. Turn it off in the menu bar ("Instant start") to open the mic only while you hold Fn.</p>
 
   <h2>Checksums (SHA-256)</h2>
-  <pre>916acfe8619befc9d62f53b8c8168daa62cad0a03fc330e61caf61388c54b80a  Bolkey-0.2.5-macOS-arm64.dmg
-cfb5b6030ace50ce898586c7f34a41e853b1a735411d6f1015e9e5efe78dcedc  Bolkey-Lite-0.2.5-macOS-arm64.dmg
-a265107a61c9fb69a2e6e6132a4621d4e4cad68d8a4a78b1ac12be9ce1554a0c  Bolkey-Lite-0.2.5-android-arm64.apk</pre>
+  <pre>6f923f2dbd99d2fd7af4f8864736d81edabb1776d76cd1377571f9db1311459a  Bolkey-0.2.6-macOS-arm64.dmg
+631203a9cb57a283152b9ac38a78a717b329b94b384f542db8d21d300e91dcdb  Bolkey-Lite-0.2.6-macOS-arm64.dmg
+359a1946bfcd5b71e8c3894f817a4960ba0237cfe2be6e76b0bbfcdc86f33356  Bolkey-Lite-0.2.6-android-arm64.apk</pre>
   <p>Check with <code>shasum -a 256 &lt;file&gt;</code>. Earlier versions are on the <a href="https://github.com/ShubhamSingh047/voice-dictation-app/releases">releases page</a>.</p>
 
   <h2>Known limits of this preview</h2>
@@ -157,7 +171,7 @@ a265107a61c9fb69a2e6e6132a4621d4e4cad68d8a4a78b1ac12be9ce1554a0c  Bolkey-Lite-0.
     <li>Mac and Android for now. Windows and iPhone are planned.</li>
     <li>Android has Bolkey Lite only; the larger Bolkey model is too big and slow for phones today.</li>
     <li>Not notarized by Apple, so the first launch needs "Open Anyway".</li>
-    <li>Bolkey Lite is noticeably less accurate on English than Bolkey; use Bolkey for English.</li>
+    <li>Bolkey Lite is 1.2 points behind Bolkey on Indian English; if you mostly dictate English, Bolkey is slightly better.</li>
   </ul>
 
   <footer>

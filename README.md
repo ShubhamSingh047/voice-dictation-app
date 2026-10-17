@@ -8,9 +8,9 @@
 
 | Version | Download | Best for |
 |---|---|---|
-| Bolkey for Mac | [Bolkey-0.2.6-macOS-arm64.dmg](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.6/Bolkey-0.2.6-macOS-arm64.dmg) (524 MB) | Large model, slightly better on English, blue |
-| Bolkey Lite for Mac | [Bolkey-Lite-0.2.6-macOS-arm64.dmg](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.6/Bolkey-Lite-0.2.6-macOS-arm64.dmg) (64 MB) | Recommended: about as accurate as Bolkey, 2–3 times faster, orange |
-| Bolkey Lite for Android | [Bolkey-Lite-0.2.6-android-arm64.apk](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.6/Bolkey-Lite-0.2.6-android-arm64.apk) (98 MB) | Android 10 or later; a floating bubble types into any app |
+| Bolkey Lite for Mac | [Bolkey-Lite-0.2.7-macOS-arm64.dmg](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.7/Bolkey-Lite-0.2.7-macOS-arm64.dmg) (64 MB) | Hold Fn and speak; Apple Silicon, macOS 11+ |
+| Bolkey Lite for Android | [Bolkey-Lite-0.2.7-android-arm64.apk](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.7/Bolkey-Lite-0.2.7-android-arm64.apk) (98 MB) | Android 10 or later; a floating bubble types into any app |
+| Bolkey Lite for Windows | [Bolkey-Lite-0.2.7-windows-x64-setup.exe](https://github.com/ShubhamSingh047/voice-dictation-app/releases/download/v0.2.7/Bolkey-Lite-0.2.7-windows-x64-setup.exe) | Windows 10 or 11, first preview; hold Ctrl + Win |
 
 Mac: Apple Silicon (M1 or newer), macOS 11 or later. Android: 64-bit ARM phones, Android 10 or later. Install steps for Android are on the [download page](https://shubhamsingh047.github.io/voice-dictation-app/).
 
@@ -30,7 +30,7 @@ Mac: Apple Silicon (M1 or newer), macOS 11 or later. Android: 64-bit ARM phones,
 
 ## How it works
 
-One Rust core does the listening, and each platform wraps it in a thin native shell: Slint on the Mac, and Kotlin on Android through UniFFI bindings. There is no server and no account. The Android app does not even ask for network permission.
+One Rust core does the listening, and each platform wraps it in a thin native shell: Slint on the Mac and Windows, and Kotlin on Android through UniFFI bindings. There is no server and no account. The only network request is a once-a-day check for a newer version number (Settings → Check for updates); speech and text never leave the device.
 
 ```mermaid
 flowchart LR
